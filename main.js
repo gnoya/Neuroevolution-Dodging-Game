@@ -10,7 +10,6 @@ let players = new Array();
 function setup() {
   createCanvas(800, 800);
   rectMode(CENTER);
-  blocks.push(new Block(400, 50, blockSize, blockSize, 0, 5));
   players.push(new Player(400, 750, playerSize, playerSize));
 }
 
@@ -32,7 +31,7 @@ function draw() {
   }
 
   if (frameCount % frameInterval == 0) {
-    blocks.push(new Block(width*random(1), 50, blockSize, blockSize, 0, 5));
+    blocks.push(new Block(width*random(1), 0, blockSize, blockSize, 0, 5));
   }
 }
 
