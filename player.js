@@ -3,7 +3,7 @@ class Player {
     this.position = createVector(x, y);
     this.width = width;
     this.height = height;
-
+    this.score;
     if (brain instanceof NeuralNetwork) {
       this.brain = brain.copy();
       this.brain.mutate(mutate);
@@ -30,6 +30,7 @@ class Player {
   }
 
   act(block) {
+    this.score++;
     let inputs = new Array();
     inputs[0] = block.position.x;
     inputs[1] = block.position.y;

@@ -1,17 +1,23 @@
-const blockSize = 50;
+const blockWidth = 100;
+const blockHeight = 50;
 const playerSize = 25;
 const blockSpeed = 4;
 const targetSpeed = 4;
 const frameInterval = 50;
 
+const totalPopultation = 300;
+
 let blocks = new Array();
 let players = new Array();
+let backupPlayers = new Array();
 
 function setup() {
   createCanvas(800, 800);
   rectMode(CENTER);
-  blocks.push(new Block(width*random(1), 0, blockSize, blockSize, 0, 5));
-  players.push(new Player(400, 750, playerSize, playerSize));
+  for(let i = 0; i < totalPopultation; i++) {
+    players.push(new Player(400, 750, playerSize, playerSize));
+  }
+  backupPlayers = players.slice(0);
 }
 
 function draw() {
@@ -28,13 +34,21 @@ function draw() {
     if (player.crashed(blocks)) {
       players.splice(players.indexOf(player), 1);
     }
-    player.act(blocks[0]);
+    if(blocks.length){
+      player.act(blocks[0]);
+    }
+    
     player.show();
   }
 
   if (frameCount % frameInterval == 0) {
-    blocks.push(new Block(width*random(1), 0, blockSize, blockSize, 0, 5));
+    blocks.push(new Block(width*random(1), 0, blockWidth, blockHeight, 0, 5));
   }
+
+  if(players.length == 0){
+    nextGeneration();
+  }
+
 }
 
 function keyPressed() {
