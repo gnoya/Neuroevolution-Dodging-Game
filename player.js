@@ -44,7 +44,6 @@ class Player {
     inputs[4] = block2.position.y / height;
     inputs[5] = block1.width / width;
     inputs[6] = block1.height / height;
-    inputs[7] = blockSpeed; 
     let outputs = this.brain.predict(inputs);
     // Sort to see which output is the highest.
     outputs = sortOutputs(outputs);

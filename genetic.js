@@ -13,10 +13,13 @@ function calculateFitness(players) {
   for (let player of players) {
     totalScore += player.score;
   }
-  // Normalize fitness from 0 to 1.
+
+  averageScore = totalScore / players.length;
+
+  // Normalize fitness between 0 and 1.
   for (let player of players) {
     player.fitness = player.score / totalScore;
-  }
+  } 
 }
 
 function naturalSelection(players) {
