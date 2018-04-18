@@ -1,6 +1,6 @@
 class Player {
   constructor(brain) {
-    this.position = createVector(400, 775);
+    this.position = createVector(width / 2, height - playerSize);
     this.width = playerSize;
     this.height = playerSize;
     this.score = 0;
@@ -15,7 +15,7 @@ class Player {
 
   crashed(array) {
     for (let element of array) {
-      if (abs(this.position.x - element.position.x) <= this.width / 2 + element.width / 2 && abs(this.position.y - element.position.y) <= this.height / 2 + element.height / 2) {
+      if ((abs(this.position.x - element.position.x) <= this.width / 2 + element.width / 2) && (abs(this.position.y - element.position.y) <= this.height / 2 + element.height / 2)) {
         return true;
       }
     }

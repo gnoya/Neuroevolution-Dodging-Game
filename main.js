@@ -1,8 +1,8 @@
 // Gameplay variables.
-const blockWidth = 250;
+const blockWidth = 100;
 const blockHeight = 50;
 const playerSize = 25;
-const blockSpeed = 16;
+const blockSpeed = 10;
 const targetSpeed = 4;
 const blockInterval = 30;
 let frameCounter = 0;
@@ -13,7 +13,7 @@ const hiddenNodes = 5;
 const outputNodes = 3;
 
 // Genetic Algorithms variables.
-const totalPopultation = 20;
+const totalPopultation = 5;
 const mutationRate = 0.02;
 let generation = 1;
 
@@ -22,7 +22,7 @@ let alivePlayers = new Array();
 let deadPlayers = new Array();
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(800, 600);
   rectMode(CENTER);
   for (let i = 0; i < totalPopultation; i++) {
     alivePlayers.push(new Player());
@@ -38,19 +38,19 @@ function draw() {
     }
   }
 
-  for (let player of alivePlayers) {
-    let tempArray = alivePlayers.slice(0);
-    if (player.crashed(blocks)) {
-      deadPlayers.push(alivePlayers.splice(alivePlayers.indexOf(player), 1)[0]);
+  for (let i = alivePlayers.length - 1; i >= 0; i--) {
+    if (alivePlayers[i].crashed(blocks)) {
+      deadPlayers.push(alivePlayers.splice(i, 1)[0]);
     }
-    if (blocks.length >= 2) {
-      let closestBlocks = find2Closest(player, blocks);
-      player.act(closestBlocks.closest, closestBlocks.secondClosest);
+    else if (blocks.length >= 2) {
+      let closestBlocks = find2Closest(alivePlayers[i], blocks);
+      alivePlayers[i].act(closestBlocks.closest, closestBlocks.secondClosest);
     }
   }
 
   if (frameCounter % blockInterval == 0) {
-    blocks.push(new Block(random(width), 0, blockWidth, blockHeight, 0, blockSpeed));
+    // The range of the random allows to create more blocks at the edges of the canvas.
+    blocks.push(new Block(random(-1/3 * blockWidth, width + 1/3 * blockWidth), 0, blockWidth, blockHeight, 0, blockSpeed));
   }
 
   if (alivePlayers.length == 0) {
