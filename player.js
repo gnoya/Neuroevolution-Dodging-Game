@@ -1,12 +1,14 @@
 class Player {
-  constructor(x, y, width, height, brain) {
-    this.position = createVector(x, y);
-    this.width = width;
-    this.height = height;
+  constructor(brain) {
+    this.position = createVector(400, 775);
+    this.width = playerSize;
+    this.height = playerSize;
+    this.score = 0;
+    this.fitness = 0;
 
     if (brain instanceof NeuralNetwork) {
       this.brain = brain.copy();
-      this.brain.mutate(mutate);
+      //this.brain.mutate(mutate);
     } else {
       this.brain = new NeuralNetwork(5, 5, 3);
     }
@@ -21,6 +23,10 @@ class Player {
     return false;
   }
 
+  copy() {
+    return new Player(this.brain);
+  }
+
   right() {
     this.position.x = constrain(this.position.x + targetSpeed, this.width / 2, width - this.width / 2);
   }
@@ -30,6 +36,7 @@ class Player {
   }
 
   act(block) {
+    this.score++;
     let inputs = new Array();
     inputs[0] = block.position.x;
     inputs[1] = block.position.y;
