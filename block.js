@@ -18,7 +18,7 @@ class Block {
   }
 
   show() {
-    fill(0);
+    fill(255);
     rect(this.position.x, this.position.y, this.width, this.height);
   }
 }
@@ -36,6 +36,8 @@ function find2Closest(player, blocks) {
       secondClosest = block;
     }
   }
+  //closest.color = 255;
+  //secondClosest.color = 255;
   return {
     closest: closest,
     secondClosest: secondClosest

@@ -4,20 +4,21 @@ const blockHeight = 50;
 const playerSize = 25;
 const blockSpeed = 8;
 const targetSpeed = 4;
-const blockInterval = 30;
+const blockInterval = 40;
 let frameCounter = 0;
 
 // Neural Network constants.
-const inputNodes = 7;
-const hiddenNodes = 7;
+const inputNodes = 5;
+const hiddenNodes = 4;
 const outputNodes = 3;
 
 // Genetic Algorithms variables.
-const totalPopultation = 500;
+const totalPopultation = 5;
 const mutationRate = 0.05;
 let generation = 0;
 let averageScore = 0;
 let highestScore = 0;
+let bestPlayer;
 
 // DOM variables.
 let slider;
@@ -28,6 +29,7 @@ let alivePlayers = new Array();
 let deadPlayers = new Array();
 
 function setup() {
+  frameRate(60);
   let canvas = createCanvas(800, 600);
   canvas.parent('canvasContainer');
 
@@ -39,7 +41,7 @@ function setup() {
   averageScoreText = select('#averageScore');
   highestScoreText = select('#highestScore');
   checkBox = select('#checkBox');
-  console.log();
+  showBest = select('#showBest');
   rectMode(CENTER);
 
   // Initial population.
@@ -57,15 +59,26 @@ function draw() {
         blocks.splice(blocks.indexOf(block), 1);
       }
     }
-
-    // Check if a player crashed and act if not.
-    for (let i = alivePlayers.length - 1; i >= 0; i--) {
-      if (alivePlayers[i].crashed(blocks)) {
-        deadPlayers.push(alivePlayers.splice(i, 1)[0]);
+    // Show best.
+    if(showBest.checked()){ 
+      if (bestPlayer.crashed(blocks)) {
+        restartGame();
       }
       else if (blocks.length >= 2) {
-        let closestBlocks = find2Closest(alivePlayers[i], blocks);
-        alivePlayers[i].act(closestBlocks.closest, closestBlocks.secondClosest);
+        let closestBlocks = find2Closest(bestPlayer, blocks);
+        bestPlayer.act(closestBlocks.closest, closestBlocks.secondClosest);
+      }
+    }
+    else{ 
+      // Check if a player crashed and act if not.
+      for (let i = alivePlayers.length - 1; i >= 0; i--) {
+        if (alivePlayers[i].crashed(blocks)) {
+          deadPlayers.push(alivePlayers.splice(i, 1)[0]);
+        }
+        else if (blocks.length >= 2) {
+          let closestBlocks = find2Closest(alivePlayers[i], blocks);
+          alivePlayers[i].act(closestBlocks.closest, closestBlocks.secondClosest);
+        }
       }
     }
 
@@ -81,18 +94,18 @@ function draw() {
 
     // If every player died.
     if (alivePlayers.length == 0) {
-      if(frameCounter > highestScore){
-        highestScore = frameCounter;
-      }
+      // if(frameCounter > highestScore){
+      //   highestScore = frameCounter;
+      // }
       nextGeneration();
       generationText.html(++generation);
-      averageScoreText.html(averageScore);
-      highestScoreText.html(highestScore)
+      averageScoreText.html(averageScore.toFixed(2));
+      highestScoreText.html(highestScore);
     }
   }
 
   // Draw in screen.
-  if(checkBox.checked()){
+  if(!checkBox.checked()){
     background(220);
     for (let player of alivePlayers) {
       player.show();
@@ -101,6 +114,4 @@ function draw() {
       block.show();
     }
   }
-
-  
 }

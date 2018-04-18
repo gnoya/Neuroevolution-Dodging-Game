@@ -1,10 +1,7 @@
 function nextGeneration() {
   calculateFitness(deadPlayers);
   naturalSelection(deadPlayers);
-  // Reset game.
-  blocks = new Array();
-  frameCounter = 0;
-  deadPlayers = new Array();
+  restartGame();
 }
 
 function calculateFitness(players) {
@@ -12,6 +9,10 @@ function calculateFitness(players) {
   // Calculate total score.
   for (let player of players) {
     totalScore += player.score;
+    if(player.score > highestScore){
+      highestScore = player.score;
+      bestPlayer = player;
+    }
   }
 
   averageScore = totalScore / players.length;
@@ -22,18 +23,26 @@ function calculateFitness(players) {
   } 
 }
 
+// function naturalSelection(players) {
+//   for (let player of players) {
+//     // For every player, make a child from two parents.
+//     let parentA = poolSelection(players);
+//     let parentB = poolSelection(players);
+
+//     let child = crossover(parentA, parentB);
+//     child.brain.mutate(mutate);
+//     alivePlayers.push(child);
+//   }
+// }
+
 function naturalSelection(players) {
   for (let player of players) {
     // For every player, make a child from two parents.
-    let parentA = poolSelection(players);
-    let parentB = poolSelection(players);
-
-    let child = crossover(parentA, parentB);
+    let child = poolSelection(players);
     child.brain.mutate(mutate);
-    alivePlayers.push(child);
+    alivePlayers.push(new Player(child.brain));
   }
 }
-
 
 function poolSelection(players) {
   // Start at 0
@@ -73,4 +82,10 @@ function mutate(x) {
   } else {
     return x;
   }
+}
+
+function restartGame(){
+  blocks = new Array();
+  frameCounter = 0;
+  deadPlayers = new Array();
 }

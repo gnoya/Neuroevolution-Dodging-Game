@@ -40,10 +40,8 @@ class Player {
     inputs[0] = this.position.x / width;
     inputs[1] = block1.position.x / width;
     inputs[2] = block1.position.y / height;
-    inputs[3] = block2.position.x / width;
-    inputs[4] = block2.position.y / height;
-    inputs[5] = block1.width / width;
-    inputs[6] = block1.height / height;
+    inputs[3] = block1.width / width;
+    inputs[4] = block1.height / height;
     let outputs = this.brain.predict(inputs);
     // Sort to see which output is the highest.
     outputs = sortOutputs(outputs);
@@ -61,7 +59,7 @@ class Player {
   }
 
   show() {
-    fill(255);
+    fill(255, 0, 0, 75);
     rect(this.position.x, this.position.y, this.width, this.height);
   }
 }
