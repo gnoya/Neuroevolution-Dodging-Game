@@ -1,18 +1,25 @@
-const blockWidth = 100;
+// Gameplay variables.
+const blockWidth = 250;
 const blockHeight = 50;
 const playerSize = 25;
-const blockSpeed = 8;
+const blockSpeed = 16;
 const targetSpeed = 4;
 const blockInterval = 30;
+let frameCounter = 0;
 
-const totalPopultation = 500;
+// Neural Network constants.
+const inputNodes = 8;
+const hiddenNodes = 5;
+const outputNodes = 3;
+
+// Genetic Algorithms variables.
+const totalPopultation = 20;
 const mutationRate = 0.02;
 let generation = 1;
 
 let blocks = new Array();
 let alivePlayers = new Array();
 let deadPlayers = new Array();
-let frameCounter = 0;
 
 function setup() {
   createCanvas(800, 800);
@@ -26,7 +33,6 @@ function draw() {
   background(220);
   for (let block of blocks) {
     block.update();
-    block.show();
     if (block.offScreen()) {
       blocks.splice(blocks.indexOf(block), 1);
     }
@@ -37,10 +43,10 @@ function draw() {
     if (player.crashed(blocks)) {
       deadPlayers.push(alivePlayers.splice(alivePlayers.indexOf(player), 1)[0]);
     }
-    if (blocks.length) {
-      player.act(blocks[0]);
+    if (blocks.length >= 2) {
+      let closestBlocks = find2Closest(player, blocks);
+      player.act(closestBlocks.closest, closestBlocks.secondClosest);
     }
-    player.show();
   }
 
   if (frameCounter % blockInterval == 0) {
@@ -51,13 +57,12 @@ function draw() {
     nextGeneration();
   }
   frameCounter++;
-}
 
-// function keyPressed() {
-//   if (keyCode == LEFT_ARROW) {
-//     players[0].left();
-//   }
-//   else if (keyCode == RIGHT_ARROW) {
-//     players[0].right();
-//   }
-// }
+  for (let player of alivePlayers) {
+    player.show();
+  }
+
+  for (let block of blocks) {
+    block.show();
+  }
+}

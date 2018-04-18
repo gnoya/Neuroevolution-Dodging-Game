@@ -8,9 +8,8 @@ class Player {
 
     if (brain instanceof NeuralNetwork) {
       this.brain = brain.copy();
-      //this.brain.mutate(mutate);
     } else {
-      this.brain = new NeuralNetwork(5, 5, 3);
+      this.brain = new NeuralNetwork(inputNodes, hiddenNodes, outputNodes);
     }
   }
 
@@ -35,18 +34,22 @@ class Player {
     this.position.x = constrain(this.position.x - targetSpeed, this.width / 2, width - this.width / 2);
   }
 
-  act(block) {
+  act(block1, block2) {
     this.score++;
     let inputs = new Array();
-    inputs[0] = block.position.x;
-    inputs[1] = block.position.y;
-    inputs[2] = block.width;
-    inputs[3] = block.height;
-    inputs[4] = this.position.x;
+    inputs[0] = this.position.x / width;
+    inputs[1] = block1.position.x / width;
+    inputs[2] = block1.position.y / height;
+    inputs[3] = block2.position.x / width;
+    inputs[4] = block2.position.y / height;
+    inputs[5] = block1.width / width;
+    inputs[6] = block1.height / height;
+    inputs[7] = blockSpeed; 
     let outputs = this.brain.predict(inputs);
+    // Sort to see which output is the highest.
     outputs = sortOutputs(outputs);
-    
-    switch(outputs[0]) {
+
+    switch (outputs[0]) {
       case 0:
         this.left();
         break;
@@ -64,15 +67,15 @@ class Player {
   }
 }
 
-function sortOutputs(outputs){
+function sortOutputs(outputs) {
   let result = new Array();
-  for(let i = 0; i < outputs.length; i++){
+  for (let i = 0; i < outputs.length; i++) {
     result.push({
       index: i,
       value: outputs[i]
     });
   }
-  result.sort(function(a, b) {
+  result.sort(function (a, b) {
     return ((a.value < b.value) ? 1 : ((a.value == b.value) ? 0 : -1));
   });
   return result.map(a => a.index);
