@@ -15,7 +15,8 @@ class Player {
 
   crashed(array) {
     for (let element of array) {
-      if ((abs(this.position.x - element.position.x) <= this.width / 2 + element.width / 2) && (abs(this.position.y - element.position.y) <= this.height / 2 + element.height / 2)) {
+      if ((abs(this.position.x - element.position.x) <= this.width / 2 + element.width / 2)
+        && (abs(this.position.y - element.position.y) <= this.height / 2 + element.height / 2)) {
         return true;
       }
     }
@@ -34,14 +35,13 @@ class Player {
     this.position.x = constrain(this.position.x - targetSpeed, this.width / 2, width - this.width / 2);
   }
 
-  act(block1, block2) {
+  act(block) {
     this.score++;
     let inputs = new Array();
     inputs[0] = this.position.x / width;
-    inputs[1] = block1.position.x / width;
-    inputs[2] = block1.position.y / height;
-    inputs[3] = block1.width / width;
-    inputs[4] = block1.height / height;
+    inputs[1] = block.position.x / width;
+    inputs[2] = block.position.y / height;
+    inputs[3] = block.width / width;
     let outputs = this.brain.predict(inputs);
     // Sort to see which output is the highest.
     outputs = sortOutputs(outputs);

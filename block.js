@@ -23,23 +23,13 @@ class Block {
   }
 }
 
-function find2Closest(player, blocks) {
+function findClosest(player, blocks) {
   let closest = Infinity;
-  let secondClosest = Infinity;
   for (let block of blocks) {
     let distance = pow(player.position.x - block.position.x, 2) + pow(player.position.y - block.position.y, 2);
-    if(distance < closest){
-      secondClosest = closest;
+    if (distance < closest) {
       closest = block;
     }
-    else if(distance < secondClosest){
-      secondClosest = block;
-    }
   }
-  //closest.color = 255;
-  //secondClosest.color = 255;
-  return {
-    closest: closest,
-    secondClosest: secondClosest
-  };
+  return closest;
 }

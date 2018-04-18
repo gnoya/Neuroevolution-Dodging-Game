@@ -9,54 +9,38 @@ function calculateFitness(players) {
   // Calculate total score.
   for (let player of players) {
     totalScore += player.score;
-    if(player.score > highestScore){
+    if (player.score > highestScore) {
       highestScore = player.score;
       bestPlayer = player;
     }
   }
-
-  averageScore = totalScore / players.length;
-
   // Normalize fitness between 0 and 1.
   for (let player of players) {
     player.fitness = player.score / totalScore;
-  } 
+  }
+  averageScore = totalScore / players.length;
 }
-
-// function naturalSelection(players) {
-//   for (let player of players) {
-//     // For every player, make a child from two parents.
-//     let parentA = poolSelection(players);
-//     let parentB = poolSelection(players);
-
-//     let child = crossover(parentA, parentB);
-//     child.brain.mutate(mutate);
-//     alivePlayers.push(child);
-//   }
-// }
 
 function naturalSelection(players) {
   for (let player of players) {
     // For every player, make a child from two parents.
-    let child = poolSelection(players);
+    let parentA = poolSelection(players);
+    let parentB = poolSelection(players);
+
+    let child = crossover(parentA, parentB);
     child.brain.mutate(mutate);
-    alivePlayers.push(new Player(child.brain));
+    alivePlayers.push(child);
   }
 }
 
 function poolSelection(players) {
-  // Start at 0
   let index = 0;
-
-  // Pick a random number between 0 and 1
   let r = random(1);
-
   // Keep subtracting probabilities until you get less than zero
   // Higher probabilities will be more likely to be fixed since they will
   // subtract a larger number towards zero
   while (r > 0) {
     r -= players[index].fitness;
-    // And move on to the next
     index += 1;
   }
   index -= 1;
@@ -69,7 +53,6 @@ function crossover(parentA, parentB) {
   // We take weights from both parents and crossover them in child's brain.
   brainA.weights_ho = brainB.weights_ho.copy();
   brainA.bias_o = brainB.bias_o.copy();
-
   // Returning child.
   return new Player(brainA);
 }
@@ -84,7 +67,7 @@ function mutate(x) {
   }
 }
 
-function restartGame(){
+function restartGame() {
   blocks = new Array();
   frameCounter = 0;
   deadPlayers = new Array();
