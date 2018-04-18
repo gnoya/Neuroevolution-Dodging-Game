@@ -1,9 +1,11 @@
 class Player {
-  constructor(x, y, width, height, brain) {
-    this.position = createVector(x, y);
+  constructor(width, height, brain) {
+    this.position = createVector(400, 775);
     this.width = width;
     this.height = height;
-    this.score;
+    this.score = 0;
+    this.fitness = 0;
+
     if (brain instanceof NeuralNetwork) {
       this.brain = brain.copy();
       this.brain.mutate(mutate);
@@ -19,6 +21,10 @@ class Player {
       }
     }
     return false;
+  }
+
+  copy() {
+    return new Player(this.width, this.height, this.brain);
   }
 
   right() {
@@ -70,4 +76,14 @@ function sortOutputs(outputs){
     return ((a.value < b.value) ? 1 : ((a.value == b.value) ? 0 : -1));
   });
   return result.map(a => a.index);
+}
+
+function mutate(x) {
+  if (random(1) < mutationRate) {
+    let offset = randomGaussian() * 0.5;
+    let newx = x + offset;
+    return newx;
+  } else {
+    return x;
+  }
 }
