@@ -3,10 +3,11 @@ const blockHeight = 50;
 const playerSize = 25;
 const blockSpeed = 8;
 const targetSpeed = 4;
-const blockInterval = 20;
+const blockInterval = 30;
 
-const totalPopultation = 2;
-const mutationRate = 0.05;
+const totalPopultation = 500;
+const mutationRate = 0.02;
+let generation = 1;
 
 let blocks = new Array();
 let alivePlayers = new Array();
@@ -17,7 +18,7 @@ function setup() {
   createCanvas(800, 800);
   rectMode(CENTER);
   for (let i = 0; i < totalPopultation; i++) {
-    alivePlayers.push(new Player(playerSize, playerSize, 0));
+    alivePlayers.push(new Player());
   }
 }
 
@@ -39,7 +40,6 @@ function draw() {
     if (blocks.length) {
       player.act(blocks[0]);
     }
-
     player.show();
   }
 
