@@ -11,7 +11,7 @@ class Block {
   }
 
   offScreen(){
-    if(this.position.x + this.width / 2 < 0 || this.position.x - this.width / 2 > width || this.position.y - this.height / 2 > height || this.position.y + this.height / 2 < 0){
+    if(this.position.x + this.width / 2 < 0 || this.position.x - this.width / 2 > width || this.position.y + this.height / 2 > height || this.position.y + this.height / 2 < 0){
       return true;
     }
     return false;
