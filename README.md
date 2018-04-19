@@ -1,10 +1,10 @@
 # Neuroevolution Dodging Game
 
 ## Objectives
-Development of a simple videogame and a neuroevolution algorithm to play a videogame.
+Development of a simple videogame and a neuroevolution algorithm to play it.
 
 ## Videogame
-The videogame consists of a player placed at the bottom of the screen and giant blocks falling from the top of the screen. The player's objective is to avoid collision with those falling blocks by moving to the sides. The player wins the game if it scores 100.000 points. Every frame the player is alive, it scores a point. If the player gets hit by a falling block, it dies and loses the game.
+The videogame consists of a player placed at the bottom of the screen and giant blocks falling from the top of the screen. The player's objective is to avoid collision with those falling blocks by moving sideways. The player wins the game if it scores 100.000 points. Every frame the player is alive, it scores a point. If the player gets hit by a falling block, it dies and loses the game.
 
 The player's and blocks' positions are tracked in a Cartesian coordinates system. These coordinates are going to be inputs of the neural network.
 
