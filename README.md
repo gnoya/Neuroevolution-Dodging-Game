@@ -93,7 +93,7 @@ Even though the crossover function is abrupt and does not have a great performan
   Figure 7: Best player playing the game.
 </p>
 
-## Built With
+## Built with
 [P5.js](https://github.com/processing/p5.js "P5.js library")
 
 [Toy-Neural-Network-JS](https://github.com/CodingTrain/Toy-Neural-Network-JS "Toy Nerual Network library")
