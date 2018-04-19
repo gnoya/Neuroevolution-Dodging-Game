@@ -52,13 +52,19 @@ Mutation consisted on tweaking a weight from the neural network. For every weigh
 With a population of 350 players, we ran the simulation for 150 generations five times. The following chart (Figure 4) shows the achieved highest score versus its current generation.
 
 <p align="center">
-  <img src="" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/resultschart1.png" width="1350">
   </br>
-  Figure 4: Results of neuroevolution.
+  Figure 4: Results of neuroevolution focused on 100.000 score peak.
+</p>
+
+<p align="center">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/resultschart2.png" width="1500">
+  </br>
+  Figure 5: Results of neuroevolution focused on highest score variation.
 </p>
 
 ## Results
-A recorded video of the best player after X generations is included above.
+A recorded video of the best player after 62 generations is included above.
 
 [Neuroevolution - A player playing perfectly](https://youtu.be/LatdzqGKPz4)
 
@@ -69,13 +75,13 @@ Even though the crossover function is abrupt and does not have a great performan
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/training.png" width="500">
   </br>
-  Figure 5: Simulated training process.
+  Figure 6: Simulated training process.
 </p>
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/showingBest.png" width="500">
   </br>
-  Figure 6: Best player playing the game.
+  Figure 7: Best player playing the game.
 </p>
 
 ## Built With
