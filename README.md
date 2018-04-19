@@ -60,6 +60,8 @@ With a population of 350 players, we ran the simulation for 150 generations five
 ## Results
 A recorded video of the best player after X generations is included above.
 
+[Neuroevolution - A player playing perfectly](https://youtu.be/LatdzqGKPz4)
+
 ## Conclusion
 Even though the crossover function is abrupt and does not have a great performance, the neural network evolved and learned how to play the game because of the game's simplicity.
 
