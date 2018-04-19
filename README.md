@@ -8,6 +8,7 @@ The videogame consists of a player placed at the bottom of the screen and giant 
 
 The player's and blocks' positions are tracked in a Cartesian coordinates system. These coordinates are going to be inputs of the neural network.
 
+The videogame runs at 60 frames per second by default, meaning that a player gets a score of 100.000 points after playing for 27 minutes.
 ## Neural Network
 ### Model
 The neural network model used in this project (Figure 1) consists of three layers: an input layer, which recieves gameplay information, a hidden layer, which helps in general processing and an output layer, which decides the actions that a player makes. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram, without including the bias neural weights, is explained in Figure 1.
