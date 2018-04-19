@@ -1,6 +1,6 @@
 # Neuroevolution Dodging Game
 
-# About
+## About
 
 ## Neural Network
 ### Model
