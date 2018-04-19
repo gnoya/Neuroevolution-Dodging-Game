@@ -36,7 +36,7 @@ Every frame where a player was alive it scored a point. Then, after every player
 A mating pool was created based on every player's fitness, meaning that players with higher fitness will be more likely to be picked. To create a new generation of players, two parents were picked randomly from this mating pool. Afterwards, the parents' genes were crossed and the child's genes had a chance of mutation.
 
 ### Crossover
-The crossover algorithm implemented in this project is kind of abrupt. We chose two parents from the mating pool and named them ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in Figure 2.
+The crossover algorithm implemented in this project is kind of rough. We chose two parents from the mating pool and named them ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in Figure 2.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/simpleModel.png" width="500">
@@ -78,7 +78,7 @@ A recorded video of the best player after 62 generations is included above.
 [Neuroevolution - A player playing perfectly](https://youtu.be/LatdzqGKPz4)
 
 ## Conclusion
-Even though the crossover function is abrupt and does not have a great performance, the neural network evolved and learned how to play the game because of the game's simplicity.
+Even though the crossover function is rough and does not have a great performance, the neural network evolved and learned how to play the game because of the game's simplicity.
 
 ## Appendix
 <p align="center">
