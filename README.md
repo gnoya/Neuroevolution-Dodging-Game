@@ -4,12 +4,13 @@
 
 ## Neural Network
 ### Model
-The neural network model used in this project consists of three layers: an input layer, which recieves gameplay information, a hidden layer, which helps in general processing and an output layer, which decides the actions that a player makes. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram, without including the bias neural weights, is explained in the following image.
+The neural network model used in this project (figure 1) consists of three layers: an input layer, which recieves gameplay information, a hidden layer, which helps in general processing and an output layer, which decides the actions that a player makes. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram, without including the bias neural weights, is explained in the figure 1.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/NeuralNetworkModel.png" width="500">
+  </br>
+  Figure 1: Neural network model.
 </p>
-
 
 'Player.x' refers to the X-axis position of the current player. 'Block.x' and 'Block.y' refer to X-axis and Y-axis position of the player's nearest block. Also, 'Block.width' represents the width of that block.
 
@@ -28,16 +29,20 @@ Every frame that a player was alive it scored a point. Then, when every player h
 A mating pool was created based on every player's fitness, meaning that players with higher fitness will be more likely to be picked. To create a new generation of players, two parents were picked randomly from this mating pool. Afterwards, the parents' genes were crossed and the child's genes had a chance of mutation.
 
 ### Crossover
-The crossover algorithm implemented in this project is kind of abrupt. We chose two parents from the mating pool and named them ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in the next image.
+The crossover algorithm implemented in this project is kind of abrupt. We chose two parents from the mating pool and named them ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in figure 2.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/simpleModel.png" width="500">
+  </br>
+  Figure 2: Simplified neural network model.
 </p>
 
-Notice that this simplified diagram only has one weight between layers and only one weight for each bias, but in the real diagram, 'W.in', 'W.out', 'Bias.in' and 'Bias.out' are matrixes filled with weights. Weights between the input layer and the hidden layer were picked from Parent A (including bias weights), and weights between the hidden layer and the output layer were picked from Parent B. The child's neural network consisted on the crossover of both set of weights. An example of this is shown in the following image.
+Notice that this simplified diagram only has one weight between layers and only one weight for each bias, but in the real diagram, 'W.in', 'W.out', 'Bias.in' and 'Bias.out' are matrixes filled with weights. Weights between the input layer and the hidden layer were picked from Parent A (including bias weights), and weights between the hidden layer and the output layer were picked from Parent B. The child's neural network consisted on the crossover of both set of weights. An example of this is shown in figure 3.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/Crossover.png" width="500">
+  </br>
+  Figure 3: Crossover algorithm.
 </p>
 
 ### Mutation
@@ -46,6 +51,11 @@ Mutation consisted on tweaking a weight from the neural network. For every weigh
 ## Experiment
 With a population of 350 players, we ran the simulation for 150 generations five times. The following chart shows the achieved highest score versus its current generation.
 
+<p align="center">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/training.png" width="500">
+  </br>
+  Figure 4: Results of neuroevolution.
+</p>
 
 ## Results
 A recorded video of the best player after X generations is included above.
@@ -57,15 +67,16 @@ Even though the crossover function is abrupt and does not have a great performan
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/training.png" width="500">
   </br>
-  Figure X: Simulated training process.
+  Figure 5: Simulated training process.
 </p>
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/showingBest.png" width="500">
-  Figure X: Best player playing the game.
+  </br>
+  Figure 6: Best player playing the game.
 </p>
-## Built With
 
+## Built With
 [P5.js](https://github.com/processing/p5.js "P5.js library")
 
 [Toy-Neural-Network-JS](https://github.com/CodingTrain/Toy-Neural-Network-JS "Toy Nerual Network library")
