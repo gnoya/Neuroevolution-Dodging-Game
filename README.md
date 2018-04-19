@@ -28,13 +28,13 @@ Every frame that a player was alive it scored. Then, when every player had died,
 A mating pool was created based on every player's fitness, meaning that players with higher fitness will be more likely to be picked. To create a new generation of players, two parents were picked randomly from this mating pool. Afterwards, the parents' genes were crossed and the child's genes had a chance of mutation.
 
 ### Crossover
-The crossover algorithm implemented 
+The crossover algorithm implemented in this project is kind of abrupt. We chose two parents from the mating pool and named them as ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in the next image.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/simpleModel.png" width="500">
 </p>
 
-Blobloblop
+Notice that this simplified diagram only has one weight between layers and only one weight for each bias. Using this diagram, weights between the input layer and the hidden layer were picked from Parent A (including bias weights), and weights between the hidden layer and the output layer were picked from Parent B. The child's neural network consisted on the crossover of both set of weights. An example of this is shown in the following image.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/Crossover.png" width="500">
@@ -61,3 +61,6 @@ Blñablalbal
 [P5.js](https://github.com/processing/p5.js "P5.js library")
 
 [Toy-Neural-Network-JS](https://github.com/CodingTrain/Toy-Neural-Network-JS "Toy Nerual Network library")
+
+## How to use
+Download this repository and run index.html. If you want a faster training, you can speed up the process by moving the speed slider. For faster training, check the 'Not draw' box. If you want to show the best player so far, check the 'Show best' box. If you wish to download the best player's neural network, click on 'Download best neural network' and a JSON file will be downloaded.
