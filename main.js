@@ -1,10 +1,10 @@
 // Gameplay variables.
-const blockWidth = 100;
-const blockHeight = 50;
+const blockWidth = 150;
+const blockHeight = 40;
 const playerSize = 25;
 const blockSpeed = 8;
-const targetSpeed = 4;
-const blockInterval = 40;
+const playerSpeed = 20;
+const blockInterval = 15;
 let frameCounter = 0;
 
 // Neural Network constants.
@@ -23,6 +23,12 @@ let bestPlayer;
 // DOM variables.
 let slider;
 let generationText;
+let currentScoreText;
+let averageScoreText;
+let highestScoreText;
+let checkBox;
+let showBest;
+let saveButton;
 
 let blocks = new Array();
 let alivePlayers = new Array();
@@ -42,12 +48,15 @@ function setup() {
   highestScoreText = select('#highestScore');
   checkBox = select('#checkBox');
   showBest = select('#showBest');
+  showBest.elt.disabled = true;
+  saveButton = select('#saveBest');
 
   rectMode(CENTER);
   // Initial population.
   for (let i = 0; i < totalPopultation; i++) {
     alivePlayers.push(new Player());
   }
+  bestPlayer = new Player();
 }
 
 function draw() {
@@ -68,6 +77,7 @@ function draw() {
 
     // Show best.
     if (showBest.checked()) {
+      saveButton.elt.disabled = true;
       if (bestPlayer.crashed(blocks)) {
         bestPlayer = new Player(bestPlayer.brain);
         restartGame();
@@ -78,6 +88,7 @@ function draw() {
       }
     }
     else {
+      saveButton.elt.disabled = false;
       // Check if a player crashed and act if not.
       for (let i = alivePlayers.length - 1; i >= 0; i--) {
         if (alivePlayers[i].crashed(blocks)) {
@@ -99,19 +110,19 @@ function draw() {
       generationText.html(++generation);
       averageScoreText.html(averageScore.toFixed(2));
       highestScoreText.html(highestScore);
+      showBest.elt.disabled = false;
     }
   }
 
   // Draw in screen.
   if (!checkBox.checked()) {
     background(220);
-
     if (showBest.checked()) {
-      bestPlayer.show();
+      bestPlayer.show([255, 0, 0]);
     }
     else {
       for (let player of alivePlayers) {
-        player.show();
+        player.show([255, 0, 0, 75]);
       }
     }
 

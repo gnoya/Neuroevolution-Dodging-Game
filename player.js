@@ -28,11 +28,11 @@ class Player {
   }
 
   right() {
-    this.position.x = constrain(this.position.x + targetSpeed, this.width / 2, width - this.width / 2);
+    this.position.x = constrain(this.position.x + playerSpeed, this.width / 2, width - this.width / 2);
   }
 
   left() {
-    this.position.x = constrain(this.position.x - targetSpeed, this.width / 2, width - this.width / 2);
+    this.position.x = constrain(this.position.x - playerSpeed, this.width / 2, width - this.width / 2);
   }
 
   act(block) {
@@ -58,22 +58,8 @@ class Player {
     }
   }
 
-  show() {
-    fill(255, 0, 0, 75);
+  show(color) {
+    fill(color);
     rect(this.position.x, this.position.y, this.width, this.height);
   }
-}
-
-function sortOutputs(outputs) {
-  let result = new Array();
-  for (let i = 0; i < outputs.length; i++) {
-    result.push({
-      index: i,
-      value: outputs[i]
-    });
-  }
-  result.sort(function (a, b) {
-    return ((a.value < b.value) ? 1 : ((a.value == b.value) ? 0 : -1));
-  });
-  return result.map(a => a.index);
 }

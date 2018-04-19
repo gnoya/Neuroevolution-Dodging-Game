@@ -66,9 +66,3 @@ function mutate(x) {
     return x;
   }
 }
-
-function restartGame() {
-  blocks = new Array();
-  frameCounter = 0;
-  deadPlayers = new Array();
-}

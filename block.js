@@ -22,14 +22,3 @@ class Block {
     rect(this.position.x, this.position.y, this.width, this.height);
   }
 }
-
-function findClosest(player, blocks) {
-  let closest = Infinity;
-  for (let block of blocks) {
-    let distance = pow(player.position.x - block.position.x, 2) + pow(player.position.y - block.position.y, 2);
-    if (distance < closest) {
-      closest = block;
-    }
-  }
-  return closest;
-}
