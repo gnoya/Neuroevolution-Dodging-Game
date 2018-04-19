@@ -14,7 +14,7 @@ The videogame runs at 60 frames per second by default, meaning that a player get
 The neural network model used in this project (Figure 1) consists of three layers: an input layer, which recieves gameplay information, a hidden layer, which helps in general processing and an output layer, which decides the actions that a player makes. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram, without including the bias neural weights, is explained in Figure 1.
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/NeuralNetworkModel.png" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/NeuralNetworkModel.png" width="500">
   </br>
   Figure 1: Neural network model.
 </p>
@@ -39,7 +39,7 @@ A mating pool was created based on every player's fitness, meaning that players 
 The crossover algorithm implemented in this project is kind of rough. We chose two parents from the mating pool and named them ParentA and ParentB. Each parent has a neural network, and its simplified form is shown in Figure 2.
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/simpleModel.png" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/simpleModel.png" width="500">
   </br>
   Figure 2: Simplified neural network model.
 </p>
@@ -47,7 +47,7 @@ The crossover algorithm implemented in this project is kind of rough. We chose t
 Notice that this simplified diagram only has one weight between layers and only one weight for each bias, but in the real diagram, 'W.in', 'W.out', 'Bias.in' and 'Bias.out' are matrixes filled with weights. Weights between the input layer and the hidden layer were picked from Parent A (including bias weights), and weights between the hidden layer and the output layer were picked from Parent B. The child's neural network consisted on the crossover of both set of weights. An example of this is shown in Figure 3.
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/Crossover.png" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/Crossover.png" width="500">
   </br>
   Figure 3: Crossover algorithm.
 </p>
@@ -59,7 +59,7 @@ Mutation consisted on tweaking a weight from the neural network. For every weigh
 With a population of 350 players, we ran the simulation five times over 150 generations. Figure 4 shows the highest achieved score versus its current generation focusing on the 100.000 score peak. That peak means that the player has achieved its goal.
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/resultschart1.png">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/resultschart1.png">
   </br>
   Figure 4: Results of neuroevolution focused on 100.000 score peak.
 </p>
@@ -67,7 +67,7 @@ With a population of 350 players, we ran the simulation five times over 150 gene
 The highest scores for every generation vary. Figure 5 focuses on the highest score variation between generations.
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/resultschart2.png">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/resultschart2.png">
   </br>
   Figure 5: Results of neuroevolution focused on highest score variation.
 </p>
@@ -82,13 +82,13 @@ Even though the crossover function is rough and does not have a great performanc
 
 ## Appendix
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/training.png" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/training.png" width="500">
   </br>
   Figure 6: Simulated training process.
 </p>
 
 <p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/showingBest.png" width="500">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/showingBest.png" width="500">
   </br>
   Figure 7: Best player playing the game.
 </p>
