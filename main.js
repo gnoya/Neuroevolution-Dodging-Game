@@ -1,63 +1,133 @@
-const blockWidth = 100;
-const blockHeight = 50;
+// Gameplay variables.
+const blockWidth = 150;
+const blockHeight = 40;
 const playerSize = 25;
 const blockSpeed = 8;
-const targetSpeed = 4;
-const blockInterval = 30;
+const playerSpeed = 20;
+const blockInterval = 15;
+let frameCounter = 0;
 
-const totalPopultation = 500;
-const mutationRate = 0.02;
-let generation = 1;
+// Neural Network constants.
+const inputNodes = 4;
+const hiddenNodes = 4;
+const outputNodes = 3;
+
+// Genetic Algorithms variables.
+const totalPopultation = 350;
+const mutationRate = 0.05;
+let generation = 0;
+let averageScore = 0;
+let highestScore = 0;
+let bestPlayer;
+
+// DOM variables.
+let slider;
+let generationText;
+let currentScoreText;
+let averageScoreText;
+let highestScoreText;
+let checkBox;
+let showBest;
+let saveButton;
 
 let blocks = new Array();
 let alivePlayers = new Array();
 let deadPlayers = new Array();
-let frameCounter = 0;
 
 function setup() {
-  createCanvas(800, 800);
+  frameRate(60);
+  let canvas = createCanvas(800, 600);
+  canvas.parent('canvasContainer');
+
+  // DOM elements.
+  slider = select('#slider');
+  speedText = select('#speed');
+  generationText = select('#generation');
+  currentScoreText = select('#currentScore');
+  averageScoreText = select('#averageScore');
+  highestScoreText = select('#highestScore');
+  checkBox = select('#checkBox');
+  showBest = select('#showBest');
+  showBest.elt.disabled = true;
+  saveButton = select('#saveBest');
+
   rectMode(CENTER);
+  // Initial population.
   for (let i = 0; i < totalPopultation; i++) {
     alivePlayers.push(new Player());
   }
+  bestPlayer = new Player();
 }
 
 function draw() {
-  background(220);
-  for (let block of blocks) {
-    block.update();
-    block.show();
-    if (block.offScreen()) {
-      blocks.splice(blocks.indexOf(block), 1);
+  for (let i = 0; i < slider.value(); i++) {
+    // Every 'blockInterval' frames generate a new block.
+    if (frameCounter % blockInterval == 0) {
+      blocks.push(new Block(random(width), 0, blockWidth, blockHeight, 0, blockSpeed));
+    }
+    frameCounter++;
+
+    // Check for every offscreen block.
+    for (let block of blocks) {
+      block.update();
+      if (block.offScreen()) {
+        blocks.splice(blocks.indexOf(block), 1);
+      }
+    }
+
+    // Show best.
+    if (showBest.checked()) {
+      saveButton.elt.disabled = true;
+      if (bestPlayer.crashed(blocks)) {
+        bestPlayer = new Player(bestPlayer.brain);
+        restartGame();
+      }
+      else {
+        let closest = findClosest(bestPlayer, blocks);
+        bestPlayer.act(closest);
+      }
+    }
+    else {
+      saveButton.elt.disabled = false;
+      // Check if a player crashed and act if not.
+      for (let i = alivePlayers.length - 1; i >= 0; i--) {
+        if (alivePlayers[i].crashed(blocks)) {
+          deadPlayers.push(alivePlayers.splice(i, 1)[0]);
+        }
+        else {
+          let closest = findClosest(alivePlayers[i], blocks);
+          alivePlayers[i].act(closest);
+        }
+      }
+    }
+
+    currentScoreText.html(frameCounter);
+    speedText.html(slider.value());
+
+    // If every player died.
+    if (alivePlayers.length == 0) {
+      nextGeneration();
+      generationText.html(++generation);
+      averageScoreText.html(averageScore.toFixed(2));
+      highestScoreText.html(highestScore);
+      showBest.elt.disabled = false;
     }
   }
 
-  for (let player of alivePlayers) {
-    let tempArray = alivePlayers.slice(0);
-    if (player.crashed(blocks)) {
-      deadPlayers.push(alivePlayers.splice(alivePlayers.indexOf(player), 1)[0]);
+  // Draw in screen.
+  if (!checkBox.checked()) {
+    background(220);
+    if (showBest.checked()) {
+      bestPlayer.show([255, 0, 0]);
     }
-    if (blocks.length) {
-      player.act(blocks[0]);
+    else {
+      for (let player of alivePlayers) {
+        player.show([255, 0, 0, 75]);
+      }
     }
-    player.show();
-  }
 
-  if (frameCounter % blockInterval == 0) {
-    blocks.push(new Block(random(width), 0, blockWidth, blockHeight, 0, blockSpeed));
+    for (let block of blocks) {
+      block.show();
+    }
   }
-
-  if (alivePlayers.length == 0) {
-    nextGeneration();
-  }
-  frameCounter++;
 }
-
-// function keyPressed() {
-//   if (keyCode == LEFT_ARROW) {
-//     players[0].left();
-//   }
-//   else if (keyCode == RIGHT_ARROW) {
-//     players[0].right();
-//   }
-// }
