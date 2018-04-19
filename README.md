@@ -19,13 +19,13 @@ Focusing on output layer, three options are given: move player to the left, move
 The weights between perceptrons are initialized randomly with values between -1 and 1. The bias weights are also initialized this way.
 
 ## Genetic Algorithms
-These algorithms were implemented using a population of 350 players and a 0.05 mutation probability rate. The fitness represents how many frames the player lasted without dying. The genes used were the weights between of each neural network.
+These algorithms were implemented using a population of 350 players and a 0.05 mutation probability rate. The fitness represents how many frames the player lasted without dying. The genes used were the weights of each neural network.
 
 ### Fitness
 Every frame that a player is alive it scores. Then, when every player has died, every score is added up into a constant. The fitness of a player equals to its score divided by that sum.
 
 ### Natural Selection
-Based on every player's fitness, a mating pool is created, meaning that players with higher fitness will be more likely picked. To create a new generation of players, two parents are picked randomly from this mating pool and then their genes are crossed.
+Based on every player's fitness, a mating pool is created, meaning that players with higher fitness will be more likely picked. To create a new generation of players, two parents are picked randomly from this mating pool. Afterwards, their genes are crossed.
 
 ### Crossover
 
