@@ -3,29 +3,30 @@
 ## About
 
 ## Neural Network
-<p align="center">
-  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/NeuralNetworkModel.png" width="750px/>
-</p>
+
+<a align="center">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/NeuralNetworkModel.png" width="750px"/>
+</a>
 
 ## Crossover
-<p align="center">
+
+<a align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/simpleModel.png" width="750px"/>
-</p>
+</a>
 
-
-<p align="center">
+<a align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/Crossover.png" width="750px/>
-</p>
+</a>
 
 ## Results
-<p align="center">
+
+<a align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/training.png" width="500px/>
-</p>
+</a>
 
-
-<p align="center">
+<a align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/showingBest.png" width="500px/>
-</p>
+</a>
 
 
 ## Built With
