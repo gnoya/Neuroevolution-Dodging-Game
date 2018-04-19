@@ -11,7 +11,7 @@ function calculateFitness(players) {
     totalScore += player.score;
     if (player.score > highestScore) {
       highestScore = player.score;
-      bestPlayer = player;
+      bestPlayer = new Player(player.brain);
     }
   }
   // Normalize fitness between 0 and 1.

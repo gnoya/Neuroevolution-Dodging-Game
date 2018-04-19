@@ -52,12 +52,11 @@ function setup() {
 
 function draw() {
   for (let i = 0; i < slider.value(); i++) {
-
     // Every 'blockInterval' frames generate a new block.
     if (frameCounter % blockInterval == 0) {
-      // The range of the random allows to create more blocks at the edges of the canvas.
-      blocks.push(new Block(random(-1 / 3 * blockWidth, width + 1 / 3 * blockWidth), 0, blockWidth, blockHeight, 0, blockSpeed));
+      blocks.push(new Block(random(width), 0, blockWidth, blockHeight, 0, blockSpeed));
     }
+    frameCounter++;
 
     // Check for every offscreen block.
     for (let block of blocks) {
@@ -66,14 +65,16 @@ function draw() {
         blocks.splice(blocks.indexOf(block), 1);
       }
     }
+
     // Show best.
     if (showBest.checked()) {
       if (bestPlayer.crashed(blocks)) {
+        bestPlayer = new Player(bestPlayer.brain);
         restartGame();
       }
-      else if (blocks.length >= 2) {
-        let closestBlocks = find2Closest(bestPlayer, blocks);
-        bestPlayer.act(closestBlocks.closest, closestBlocks.secondClosest);
+      else {
+        let closest = findClosest(bestPlayer, blocks);
+        bestPlayer.act(closest);
       }
     }
     else {
@@ -89,7 +90,6 @@ function draw() {
       }
     }
 
-    frameCounter++;
     currentScoreText.html(frameCounter);
     speedText.html(slider.value());
 
@@ -105,9 +105,16 @@ function draw() {
   // Draw in screen.
   if (!checkBox.checked()) {
     background(220);
-    for (let player of alivePlayers) {
-      player.show();
+
+    if (showBest.checked()) {
+      bestPlayer.show();
     }
+    else {
+      for (let player of alivePlayers) {
+        player.show();
+      }
+    }
+
     for (let block of blocks) {
       block.show();
     }
