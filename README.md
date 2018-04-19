@@ -30,7 +30,7 @@ The weights between perceptrons were initialized randomly with values between -1
 These algorithms were implemented using a population of 350 players and a 0.05 mutation probability rate. The score represented how many frames the player lasted without dying. The fitness was calculated based on the score. The genes used were the weights of each neural network.
 
 ### Fitness
-Every frame that a player was alive it scored a point. Then, when every player had died, every score was added up into a constant which divided every player's score resulting in its own fitness. This way, the sum of all fitnesses equals to 1.
+Every frame where a player was alive it scored a point. Then, after every player had died, every score was added up into a constant which divided every player's score resulting in its own fitness. This way, the sum of all fitnesses equals to 1.
 
 ### Natural Selection
 A mating pool was created based on every player's fitness, meaning that players with higher fitness will be more likely to be picked. To create a new generation of players, two parents were picked randomly from this mating pool. Afterwards, the parents' genes were crossed and the child's genes had a chance of mutation.
