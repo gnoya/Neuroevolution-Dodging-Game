@@ -1,9 +1,10 @@
 # Neuroevolution Dodging Game
 
-## About
+# About
 
 ## Neural Network
-The neural network model used in this project has one input layer, one hidden layer and one output layer. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram can be found in the following image.
+### Model
+The neural network model used in this project has one input layer, one hidden layer and one output layer. The input layer receives four different inputs, the hidden layer has four fully connected perceptrons and the output layer gives three outputs. This neural network's diagram, without including the bias neural connections, can be found in the following image.
 
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/NeuralNetworkModel.png" width="500">
@@ -14,7 +15,19 @@ The neural network model used in this project has one input layer, one hidden la
 
 Focusing on output layer, three options are given: move player to the left, move player to the right or don't move at all.
 
-## Crossover
+### Initialization
+The weights between perceptrons are initialized randomly with values between -1 and 1. The bias weights are also initialized this way.
+
+## Genetic Algorithms
+These algorithms were implemented using a population of 350 players and a 0.05 mutation probability rate. The fitness represents how many frames the player lasted without dying. The genes used were the weights between of each neural network.
+
+### Fitness
+Every frame that a player is alive it scores. Then, when every player has died, every score is added up into a constant. The fitness of a player equals to its score divided by that sum.
+
+### Natural Selection
+Based on every player's fitness, a mating pool is created, meaning that players with higher fitness will be more likely picked. To create a new generation of players, two parents are picked randomly from this mating pool and then their genes are crossed.
+
+### Crossover
 
 Blablabla
 <p align="center">
@@ -26,6 +39,8 @@ Blobloblop
 <p align="center">
   <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/Readme/results/Crossover.png" width="500">
 </p>
+
+### Mutation
 
 ## Results
 
