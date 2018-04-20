@@ -73,6 +73,11 @@ The highest scores for every generation vary. Figure 5 focuses on the highest sc
 </p>
 
 ## Results
+
+<p align="center">
+  <img src="https://github.com/gnoya/Neuroevolution-Dodging-Game/blob/master/results/result.gif">
+</p>
+
 A recorded video of the best player after 62 generations is included above.
 
 [Neuroevolution - A player playing perfectly](https://youtu.be/LatdzqGKPz4)
